@@ -16,6 +16,7 @@ Almost every people rely on card for spending, which often makes it hard to trac
 
 ### Features
 
+As a user, I want to add monthly income
 As a user, I want to add a new expense with details like amount category and date
 As a user, I want to edit the details of an existing expense
 As a user, I want to delete the expense if not needed in the list
@@ -47,20 +48,223 @@ MySQL
 
 ### Sitemap
 
--Homepage :- Displays the fixed income, total expenses, and remaining balance and it includes a form to add a new expense.
+-Homepage :- Displays the income, total expenses, and remaining balance and a button to add an expense
+-Add Expense Form :- This form allows user to add expense record by filling the following fields
+Amount
+Category(drop-down with options)
+Date
+Description
+A submit button to save the record into database
+A cancel button to return to the homepage
 -Expense list page :- Displays a list of all expenses with options to edit or delete.
+A table like layout displaying all expenses in row
+A button to go to home page
+Clicking on edit will go to edit form page
+Clicking on delete will delete the record
 
 ### Mockups
 
-Provide visuals of your app's screens. You can use pictures of hand-drawn sketches, or wireframing tools like Figma.
+![](image.png)
 
 ### Data
 
-Describe your data and the relationships between the data points. You can show this visually using diagrams, or write it out.
+Databases
+
+1. Users Table (ID, Email, Password) - ID is primary key
+2. Categories Table (ID, Name) - ID is primary key
+3. Expenses Table (ID, amount, date, description, Categories_ID, Users_ID) - ID is primary key, Categories_ID and Users_ID are foreign key referncing Categories and Users table respectively
+4. Income Table (ID, amount, month, User_ID) - ID is primary key and User_ID references the Users table
 
 ### Endpoints
 
-List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
+Categories API
+GET /api/categories : Return an array of categories
+Response Body Example
+
+```
+[
+    {
+        "id": 1,
+        "name":"Food"
+    },
+     {
+        "id": 2,
+        "name":"Transportation"
+    },
+    ...
+]
+
+Expenses Table
+GET /api/expenses
+Query Parameters
+User_ID: to fetch all the expenses of a user
+
+Response Body Example
+
+[
+    {
+        "id": 1,
+        "amount":30,
+        "date":"2025-03-12,
+        "description:"Bus and train fare to office,
+        "Category_ID":2,
+        "User_ID":1
+    },
+      {
+        "id": 1,
+        "amount":120,
+        "date":"2025-03-01,
+        "description:"Lunch",
+        "Category_ID":1,
+        "User_ID":1
+    },
+    {
+        "id": 1,
+        "amount":120,
+        "date":"2025-02-11,
+        "description:"Dinner",
+        "Category_ID":1,
+        "User_ID":1
+    },
+    ...
+]
+
+GET /api/expenses
+Query Parameters:-
+User_ID: to fetch all the expenses of a user
+month:First day of month, to fetch only that month's records
+
+Response Body
+[
+    {
+        "id": 1,
+        "amount":30,
+        "date":"2025-03-12,
+        "description:"Bus and train fare to office,
+        "Category_ID":2,
+        "User_ID":1
+    },
+      {
+        "id": 1,
+        "amount":120,
+        "date":"2025-03-01,
+        "description:"Lunch",
+        "Category_ID":1,
+        "User_ID":1
+    },
+    ...
+]
+
+POST /api/expenses :- adds a new expense
+
+Request Body
+    {
+        "amount":30,
+        "date":"2025-03-12,
+        "description:"Bus and train fare to office,
+        "Category_ID":2,
+        "User_ID":1
+    }
+
+Response Body
+    {
+        "id":1
+        "amount":30,
+        "date":"2025-03-12,
+        "description:"Bus and train fare to office,
+        "Category_ID":2,
+        "User_ID":1
+        "created_at" :"2023-10-05T00:00:00.000Z"
+    }
+
+PUT /api/expenses/:id :- Update an existing expense
+Parameter: id of expense
+
+Request body
+    {
+        "amount":50,
+        "date":"2025-03-12,
+        "description:"Bus and train fare,
+        "Category_ID":2,
+    }
+Response Body
+    {
+        "id":1
+        "amount":30,
+        "date":"2025-03-12,
+        "description:"Bus and train fare to office,
+        "Category_ID":2,
+        "User_ID":1
+        "created_at" :"2023-10-05T00:00:00.000Z"
+    }
+
+GET /api/expenses/:id :- get an expense by its id
+Parameter: id of expense
+Response body
+    {
+        "id": 1,
+        "amount":30,
+        "date":"2025-03-12,
+        "description:"Bus and train fare to office,
+        "Category_ID":2,
+        "User_ID":1
+    }
+
+DELETE /api/expenses/:id :- Deletes the expense specified by ID
+Parameter:- id of expense
+Response body
+    {
+        "message": "Successfully deleted"
+    }
+
+Fetch total expenses of a user
+GET /api/expenses/total
+Response body
+    {
+        "totalExpenses": 5000
+    }
+
+
+Income table
+POST /api/income :- Add an income
+Request Body
+    {
+        "amount":5000,
+        "date":"2025-03-01,
+        "User_ID":1
+    }
+Response body
+    {
+        "id":1
+        "amount":5000,
+        "date":"2025-03-01,
+        "User_ID":1
+        "created_at" :"2023-10-05T00:00:00.000Z"
+    }
+
+GET /api/income : Get income for a specific month
+Query parameters:
+month
+Response body
+    {
+        "id":1
+        "amount":5000,
+        "date":"2025-03-01,
+        "User_ID":1
+        "created_at" :"2023-10-05T00:00:00.000Z"
+    }
+
+GET /api/balance :- To view the balance remaining
+Parameters:
+User_ID: id of user
+month: month for which to display balance
+    {
+        "balanceRemaining": 5000
+    }
+
+
+
+
 
 ## Roadmap
 
@@ -82,3 +286,4 @@ List endpoints that your server will implement, including HTTP methods, paramete
 ## Future Implementations
 
 Your project will be marked based on what you committed to in the above document. Here, you can list any additional features you may complete after the MVP of your application is built, or if you have extra time before the Capstone due date.
+```
