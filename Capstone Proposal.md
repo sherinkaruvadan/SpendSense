@@ -74,6 +74,7 @@ Databases
 2. Categories Table (ID, Name) - ID is primary key
 3. Expenses Table (ID, amount, date, description, Categories_ID, Users_ID) - ID is primary key, Categories_ID and Users_ID are foreign key referncing Categories and Users table respectively
 4. Income Table (ID, amount, month, User_ID) - ID is primary key and User_ID references the Users table
+   ![](income_table)
 
 ### Endpoints
 
@@ -280,10 +281,11 @@ month: month for which to display balance
 - Create seeds with sample records
 
 - Implement the Expenses API (GET, POST, PUT, DELETE).
-
----
+-Implement categories API
+-Implement the income API
 
 ## Future Implementations
+User registration and login (email/password or OAuth).
+Allow users to set up recurring income and expenses like Wage, Rent etc
 
-Your project will be marked based on what you committed to in the above document. Here, you can list any additional features you may complete after the MVP of your application is built, or if you have extra time before the Capstone due date.
 ```
