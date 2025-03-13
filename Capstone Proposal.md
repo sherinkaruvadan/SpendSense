@@ -48,7 +48,8 @@ MySQL
 
 ### Sitemap
 
--Homepage :- Displays the income, total expenses, and remaining balance and a button to add an expense
+-Homepage :- Displays the income, total expenses, and remaining balance and a link to add an expense form page. It has a pei-chart the displays the expenses by category.
+
 -Add Expense Form :- This form allows user to add expense record by filling the following fields
 Amount
 Category(drop-down with options)
@@ -56,6 +57,7 @@ Date
 Description
 A submit button to save the record into database
 A cancel button to return to the homepage
+
 -Expense list page :- Displays a list of all expenses with options to edit or delete.
 A table like layout displaying all expenses in row
 A button to go to home page
@@ -64,17 +66,22 @@ Clicking on delete will delete the record
 
 ### Mockups
 
-![](image.png)
+![](Homepage.png)
+![](AddExpenseForm.png)
+![](ExpenseListpage.png)
 
 ### Data
 
 Databases
 
 1. Users Table (ID, Email, Password) - ID is primary key
+   ![](Users_table.png)
 2. Categories Table (ID, Name) - ID is primary key
+   ![](Categories_table.png)
 3. Expenses Table (ID, amount, date, description, Categories_ID, Users_ID) - ID is primary key, Categories_ID and Users_ID are foreign key referncing Categories and Users table respectively
+   ![](Expense_table.png)
 4. Income Table (ID, amount, month, User_ID) - ID is primary key and User_ID references the Users table
-   ![](income_table)
+   ![](income_table.png)
 
 ### Endpoints
 
