@@ -49,7 +49,7 @@ MySQL
 ### Sitemap
 
 -Homepage :- Displays the income, total expenses, and remaining balance and a link to add an expense form page. It has a pei-chart the displays the expenses by category.
-![](Homepage.png)
+
 -Add Expense Form :- This form allows user to add expense record by filling the following fields
 Amount
 Category(drop-down with options)
@@ -57,17 +57,18 @@ Date
 Description
 A submit button to save the record into database
 A cancel button to return to the homepage
-![](AddExpenseForum.png)
+
 -Expense list page :- Displays a list of all expenses with options to edit or delete.
 A table like layout displaying all expenses in row
 A button to go to home page
 Clicking on edit will go to edit form page
 Clicking on delete will delete the record
-![](ExpenseListpage)
 
 ### Mockups
 
-![](image.png)
+![](Homepage.png)
+![](AddExpenseForm.png)
+![](ExpenseListpage.png)
 
 ### Data
 
