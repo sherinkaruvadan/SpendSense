@@ -74,8 +74,8 @@ Databases
 2. Categories Table (ID, Name) - ID is primary key
 3. Expenses Table (ID, amount, date, description, Categories_ID, Users_ID) - ID is primary key, Categories_ID and Users_ID are foreign key referncing Categories and Users table respectively
 4. Income Table (ID, amount, month, User_ID) - ID is primary key and User_ID references the Users table
-   ![](income_table)
-   ![](Database_table)
+   ![](income_table.png)
+   ![](Database_tables.png)
 
 ### Endpoints
 
