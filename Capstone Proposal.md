@@ -75,11 +75,13 @@ Clicking on delete will delete the record
 Databases
 
 1. Users Table (ID, Email, Password) - ID is primary key
+   ![](Users_table.png)
 2. Categories Table (ID, Name) - ID is primary key
+   ![](Categories_table.png)
 3. Expenses Table (ID, amount, date, description, Categories_ID, Users_ID) - ID is primary key, Categories_ID and Users_ID are foreign key referncing Categories and Users table respectively
+   ![](Expense_table.png)
 4. Income Table (ID, amount, month, User_ID) - ID is primary key and User_ID references the Users table
    ![](income_table.png)
-   ![](Database_tables.png)
 
 ### Endpoints
 
