@@ -1,0 +1,8 @@
+.login {
+  width: 50%;
+  justify-content: center;
+  &-form {
+    display: flex;
+    flex-direction: column;
+  }
+}

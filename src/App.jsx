@@ -12,7 +12,6 @@ function App() {
   const [user, setUser] = useState(null);
   return (
     <>
-      <h1>Assalamu alaikum Spend sense</h1>
       <BrowserRouter>
         <Routes>
           <Route
