@@ -35,3 +35,16 @@ a {
   text-decoration: none;
   color: $primary-blue;
 }
+
+.button {
+  background-color: $primary-green;
+  color: $white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: darken($primary-green, 10%);
+  }
+}

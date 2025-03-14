@@ -79,7 +79,7 @@ const LoginPage = ({ user, setUser }) => {
           onChange={handlePasswordChange}
           required
         />
-        <button>Login</button>
+        <button className="button">Login</button>
       </form>
     </div>
   );
