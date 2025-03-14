@@ -269,7 +269,20 @@ month: month for which to display balance
         "balanceRemaining": 5000
     }
 
-
+POST /login: to login to application
+Request body
+    {
+        "email": "sherinanooj@gmail.com
+        "password" :"abc123"
+    }
+Response body
+    {
+        "success": true,
+        "user": {
+            "id": 1,
+            "email": "sherinanooj@gmail.com"
+        }
+    }
 
 
 
