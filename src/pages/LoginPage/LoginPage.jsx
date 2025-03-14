@@ -1,5 +1,7 @@
 import React from "react";
 import "./LoginPage.scss";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { API_URL } from "../../config.js";
 
@@ -8,6 +10,9 @@ const LoginPage = ({ user, setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  //navigate
+  const navigate = useNavigate();
 
   //handle email input change
   const handleEmailChange = (event) => {
@@ -21,19 +26,21 @@ const LoginPage = ({ user, setUser }) => {
 
   //handle form submission
   const handleLogin = async (event) => {
-    event.prevent.Default();
+    event.preventDefault();
 
     try {
       const response = await axios.post(`${API_URL}/login`, {
         email,
         password,
       });
-
-      const data = await response.json;
-
-      if (data.success) {
-        setUser(data.user);
-        Navigate("/home");
+      console.log(response.data);
+      console.log(response.data.success);
+      console.log(response.data.user);
+      if (response.data.success) {
+        setUser(response.data.user);
+        setEmail("");
+        setPassword("");
+        navigate("/home");
       } else {
         setError(data.message);
       }
@@ -45,7 +52,7 @@ const LoginPage = ({ user, setUser }) => {
   return (
     <div className="login">
       <h2 className="login__title">Login</h2>
-      <form className="login-form">
+      <form onSubmit={handleLogin} className="login-form">
         <label htmlFor="email" className="login-label">
           Email
         </label>
