@@ -51,4 +51,10 @@ a {
   &:hover {
     background-color: #43a047;
   }
+  &-cancel {
+    background-color: $primary-blue;
+    &:hover {
+      background-color: #1e88e5;
+    }
+  }
 }
