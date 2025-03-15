@@ -1,0 +1,7 @@
+@use "../../styles/partials/variables" as *;
+.footer {
+  //   background-color: $light-grey;
+  &__copyright {
+    font-size: 0.75rem;
+  }
+}
