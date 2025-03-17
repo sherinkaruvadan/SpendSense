@@ -14,18 +14,18 @@ const AddExpenseForm = ({ user }) => {
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
 
-  console.log(user);
+  // console.log(user);
 
   //fetch all categories
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/category`);
+      setCategories(response.data);
+    } catch (error) {
+      setError("An error occured, please try again");
+    }
+  };
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/category`);
-        setCategories(response.data);
-      } catch (error) {
-        setError("An error occured, please try again");
-      }
-    };
     fetchCategories();
   }, []);
 

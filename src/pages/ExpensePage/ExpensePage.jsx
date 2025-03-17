@@ -1,7 +1,7 @@
 import React from "react";
-
-const ExpensePage = () => {
-  return <div>ExpensePage</div>;
+import ExpenseList from "../../components/ExpenseList/ExpenseList";
+const ExpensePage = ({ user }) => {
+  return <ExpenseList user={user} />;
 };
 
 export default ExpensePage;

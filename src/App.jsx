@@ -7,15 +7,23 @@ import ExpensePage from "./pages/ExpensePage/ExpensePage";
 import AddExpenseFormPage from "./pages/AddExpenseFormPage/AddExpenseFormPage";
 import EditExpenseFormPage from "./pages/EditExpenseFormPage/EditExpenseFormPage";
 import Footer from "./components/Footer/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   //setting the state variable for user
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
+
+  // Initialize user state from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
   return (
     <>
       <BrowserRouter>
-        <Header />
+        <Header user={user} />
         <Routes>
           <Route
             path="/"
@@ -28,7 +36,7 @@ function App() {
             element={<AddExpenseFormPage user={user} />}
           />
           <Route
-            path="/expense/edit"
+            path="/expense/:id/edit"
             element={<EditExpenseFormPage user={user} />}
           />
         </Routes>
