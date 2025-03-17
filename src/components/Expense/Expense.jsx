@@ -18,7 +18,7 @@ const Expense = ({ expense }) => {
       <p className="expense__description">{expense.description}</p>
       <p className="expense__amount">{expense.amount}</p>
       <div className="expense__actions">
-        <Link to={`expense/${expense.id}/edit`}>
+        <Link to={`/expense/${expense.id}/edit`}>
           <img src={EditSvg} alt="Edit icon" />
         </Link>
         <img src={deleteSvg} alt="Delete Icon" />
