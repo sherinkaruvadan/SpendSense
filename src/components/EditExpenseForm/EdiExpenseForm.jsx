@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import "./AddExpenseForm.scss";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../config.js";
-import { useNavigate } from "react-router-dom";
 
-const AddExpenseForm = ({ user }) => {
+const EdiExpenseForm = ({ user }) => {
+  //get expense record Id from url
+  const { id } = useParams();
   const navigate = useNavigate();
-  //state variable for categories
+
+  //state variables
   const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
-
-  // console.log(user);
 
   //fetch all categories
   const fetchCategories = async () => {
@@ -25,33 +25,42 @@ const AddExpenseForm = ({ user }) => {
       setError("An error occured, please try again");
     }
   };
+
+  //fetch the record to be edited
+  const fetchExpense = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/expense/${id}`);
+      console.log(response.data);
+      const expense = response.data;
+      setAmount(expense.amount);
+      setDescription(expense.description);
+      setDate(expense.date.split("T")[0]);
+      setCategory(
+        categories.find((cat) => cat.id === expense.category_id) || ""
+      );
+    } catch (error) {
+      console.error(`Error in fetching expense data: ${error}`);
+      setError(`An error occured, please try again`);
+    }
+  };
+
   useEffect(() => {
     fetchCategories();
   }, []);
 
-  //handle input change
-  //handle amount change
-  const handleAmountChange = (event) => {
-    setAmount(event.target.value);
-  };
+  useEffect(() => {
+    fetchExpense();
+  }, [id]);
 
-  //handle category change
+  // Handle input changes
+  const handleAmountChange = (event) => setAmount(event.target.value);
+  const handleDescriptionChange = (event) => setDescription(event.target.value);
+  const handleDateChange = (event) => setDate(event.target.value);
   const handleCategoryChange = (event) => {
     const selectedCategory = categories.find(
       (cat) => cat.name === event.target.value
     );
     setCategory(selectedCategory);
-    console.log(category);
-  };
-
-  //handle description change
-  const handleDescritpionChange = (event) => {
-    setDescription(event.target.value);
-  };
-
-  //handle date change
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
   };
 
   //handle cancel button
@@ -64,23 +73,32 @@ const AddExpenseForm = ({ user }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const newExpenseObj = {
+    // Validate form inputs
+    if (!amount || !category || !date) {
+      setError("Please fill out all required fields.");
+      return;
+    }
+
+    const updatedExpenseObj = {
       date: date,
       category_id: category.id,
       description: description,
       amount: amount,
       user_id: user.id,
     };
+    console.log(updatedExpenseObj);
 
-    console.log(newExpenseObj);
-
-    //push the data via post request
     try {
-      const response = await axios.post(`${API_URL}/expense`, newExpenseObj);
-      console.log(response.data);
-      navigate("/expense");
+      // Update the expense
+      const response = await axios.put(
+        `${API_URL}/expense/${id}`,
+        updatedExpenseObj
+      );
+      console.log("Expense updated:", response.data);
+      navigate("/expense"); // Redirect to the expense list page
     } catch (error) {
-      console.error(`Error creating an expense record: ${error}`);
+      console.error("Error updating expense:", error);
+      setError("Failed to update the expense. Please try again.");
     }
   };
 
@@ -130,7 +148,7 @@ const AddExpenseForm = ({ user }) => {
         placeholder="Enter Description"
         className="expense-input"
         value={description}
-        onChange={handleDescritpionChange}
+        onChange={handleDescriptionChange}
       />
       <label htmlFor="date" className="expense-label">
         Date
@@ -156,4 +174,4 @@ const AddExpenseForm = ({ user }) => {
   );
 };
 
-export default AddExpenseForm;
+export default EdiExpenseForm;
