@@ -3,9 +3,13 @@ import "./Header.scss";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/Images/logo.svg";
 
-const Header = () => {
+const Header = ({ user }) => {
   const location = useLocation();
   const isLoginPage = location.pathname === "/";
+
+  // Extract the part of the email before the "@" symbol
+  const displayName = user ? user.email.split("@")[0] : "";
+
   return (
     <header className="header">
       <Link to="/home">
@@ -32,6 +36,11 @@ const Header = () => {
             Expenses
           </NavLink>
         </nav>
+      )}
+      {user && (
+        <div className="header__user">
+          <span className="header__user--name">{displayName}</span>
+        </div>
       )}
     </header>
   );
