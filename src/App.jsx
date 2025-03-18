@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   //set a month as current month
-  const [month, setMonth] = useState(new Date().getMonth());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
 
   return (
     <>

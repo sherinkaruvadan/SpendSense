@@ -10,7 +10,7 @@ const HomePage = ({ month, setMonth }) => {
       <h2>Dashboard</h2>
       <MonthSelector month={month} setMonth={setMonth} />
       <section className="summary">
-        <Summary />
+        <Summary month={month} />
       </section>
     </div>
   );
