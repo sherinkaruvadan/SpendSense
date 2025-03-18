@@ -20,6 +20,10 @@ function App() {
       setUser(JSON.parse(storedUser));
     }
   }, []);
+
+  //set a month as current month
+  const [month, setMonth] = useState(new Date().getMonth());
+
   return (
     <>
       <BrowserRouter>
@@ -29,7 +33,10 @@ function App() {
             path="/"
             element={<LoginPage user={user} setUser={setUser} />}
           />
-          <Route path="/home" element={<HomePage user={user} />} />
+          <Route
+            path="/home"
+            element={<HomePage user={user} month={month} setMonth={setMonth} />}
+          />
           <Route path="/expense" element={<ExpensePage user={user} />} />
           <Route
             path="/expense/add"
