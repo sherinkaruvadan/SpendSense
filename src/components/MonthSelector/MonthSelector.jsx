@@ -17,9 +17,9 @@ const MonthSelector = ({ month, setMonth }) => {
     { name: "November", value: 11 },
     { name: "December", value: 12 },
   ];
-  const onMonthClick = (event) => {
-    setMonth(event.target.textContent);
-    console.log("Month selected is ", month);
+  const onMonthClick = (monthSelected) => {
+    setMonth(monthSelected);
+    console.log("Month selected is ", monthSelected);
   };
 
   return (
@@ -28,7 +28,7 @@ const MonthSelector = ({ month, setMonth }) => {
         return (
           <button
             key={month.value}
-            onClick={onMonthClick}
+            onClick={() => onMonthClick(month.value)}
             className="month-item"
           >
             {month.name.slice(0, 3).toUpperCase()}
