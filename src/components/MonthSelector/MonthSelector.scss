@@ -1,5 +1,14 @@
+@use "../../styles/partials/variables" as *;
 .month {
   width: 50%;
   display: flex;
   justify-content: space-between;
+  &-item {
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    background-color: $primary-blue;
+    border: none;
+    border-radius: 4px;
+    color: $white;
+  }
 }
