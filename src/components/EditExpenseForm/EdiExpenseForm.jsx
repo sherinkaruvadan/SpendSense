@@ -7,11 +7,11 @@ const EdiExpenseForm = ({ user }) => {
   //get expense record Id from url
   const { id } = useParams();
   const navigate = useNavigate();
-
+  console.log(user);
   //state variables
   const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState({ id: "", name: "" });
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
@@ -29,15 +29,15 @@ const EdiExpenseForm = ({ user }) => {
   //fetch the record to be edited
   const fetchExpense = async () => {
     try {
-      const response = await axios.get(`${API_URL}/expense/${id}`);
+      const response = await axios.get(`${API_URL}/expense/${id}`, {
+        params: { user_id: user.id },
+      });
       console.log(response.data);
       const expense = response.data;
       setAmount(expense.amount);
       setDescription(expense.description);
       setDate(expense.date.split("T")[0]);
-      setCategory(
-        categories.find((cat) => cat.id === expense.category_id) || ""
-      );
+      setCategory({ id: expense.category_id, name: expense.category_name });
     } catch (error) {
       console.error(`Error in fetching expense data: ${error}`);
       setError(`An error occured, please try again`);
@@ -45,12 +45,23 @@ const EdiExpenseForm = ({ user }) => {
   };
 
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    const fetchData = async () => {
+      await fetchCategories(); // Fetch categories first
+      if (user && user.id) {
+        await fetchExpense(); // Fetch expense after categories are loaded
+      }
+    };
 
-  useEffect(() => {
-    fetchExpense();
-  }, [id]);
+    fetchData();
+  }, [id, user]);
+
+  // useEffect(() => {
+  //   fetchCategories();
+  // }, []);
+
+  // useEffect(() => {
+  //   fetchExpense();
+  // }, [id]);
 
   // Handle input changes
   const handleAmountChange = (event) => setAmount(event.target.value);
@@ -58,9 +69,9 @@ const EdiExpenseForm = ({ user }) => {
   const handleDateChange = (event) => setDate(event.target.value);
   const handleCategoryChange = (event) => {
     const selectedCategory = categories.find(
-      (cat) => cat.name === event.target.value
+      (cat) => cat.id === parseInt(event.target.value)
     );
-    setCategory(selectedCategory);
+    setCategory(selectedCategory || { id: "", name: "" });
   };
 
   //handle cancel button
@@ -95,6 +106,10 @@ const EdiExpenseForm = ({ user }) => {
         updatedExpenseObj
       );
       console.log("Expense updated:", response.data);
+      setCategory({
+        id: response.data.category_id,
+        name: response.data.category_name,
+      });
       navigate("/expense"); // Redirect to the expense list page
     } catch (error) {
       console.error("Error updating expense:", error);
@@ -124,7 +139,7 @@ const EdiExpenseForm = ({ user }) => {
         name="category"
         id="category"
         className="expense-input"
-        value={category}
+        value={category.id}
         onChange={handleCategoryChange}
         required
       >
@@ -133,7 +148,7 @@ const EdiExpenseForm = ({ user }) => {
         </option>
         {categories.map((category) => {
           return (
-            <option key={category.id} value={category.name}>
+            <option key={category.id} value={category.id}>
               {category.name}
             </option>
           );

@@ -14,7 +14,7 @@ const Expense = ({ expense }) => {
   return (
     <article className="expense">
       <p className="expense__date">{formattedDate}</p>
-      <p className="expense__category">{expense.category_id}</p>
+      <p className="expense__category">{expense.category_name}</p>
       <p className="expense__description">{expense.description}</p>
       <p className="expense__amount">{expense.amount}</p>
       <div className="expense__actions">
