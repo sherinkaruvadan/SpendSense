@@ -51,7 +51,18 @@ const AddExpenseForm = ({ user }) => {
 
   //handle date change
   const handleDateChange = (event) => {
-    setDate(event.target.value);
+    const selectedDate = new Date(event.target.value);
+    const currentDate = new Date();
+    // Check if the selected date is in the future
+    if (selectedDate > currentDate) {
+      setError(
+        "Future dates are not allowed. Please select a past or current date."
+      );
+      setDate(""); // Reset the date input
+    } else {
+      setError(""); // Clear any previous error
+      setDate(event.target.value);
+    }
   };
 
   //handle cancel button
