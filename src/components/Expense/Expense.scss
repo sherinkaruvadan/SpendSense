@@ -1,4 +1,40 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 .expense {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 16px;
+  background-color: $light-grey;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: $light-grey;
+  width: 100%;
+  max-width: 20rem;
+  margin: 1rem;
+  &__actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &--item {
+      width: 1.5rem;
+    }
+  }
+  @include tablet {
+    &__actions {
+      &--item {
+        width: 2rem;
+      }
+    }
+  }
+  @include desktop {
+    flex-direction: row;
+    max-width: 98%;
+    justify-content: space-between;
+    &__actions {
+      width: 10%;
+    }
+  }
 }
