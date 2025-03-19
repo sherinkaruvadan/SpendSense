@@ -1,11 +1,45 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 .summary {
   &__title {
+    margin-top: 1rem;
     text-align: center;
     padding: 1rem;
   }
   &__content {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: $light-grey;
+    width: 100%;
+    max-width: 25rem;
+    height: 10rem;
+    margin: 1rem;
+    &--title {
+      padding-bottom: 1rem;
+    }
+    &--value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: $primary-blue;
+    }
+  }
+  @include tablet {
+    &__content {
+      flex-direction: row;
+    }
+    &__item {
+      width: 20rem;
+    }
   }
 }

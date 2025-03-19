@@ -5,14 +5,15 @@ import axios from "axios";
 import { API_URL } from "../../config";
 
 const Summary = ({ user, month, months }) => {
+  // console.log(month);
+  // console.log(user);
+
   //summary for a month
   const [summary, setSummary] = useState({
     totalExpense: 0,
     totalIncome: 0,
     savings: 0,
   });
-  // console.log(month);
-  // console.log(user);
   const formattedDate = `${new Date().getFullYear()}-${month}-30`;
   //fetch data from API
   const fetchSummary = async () => {
@@ -40,15 +41,15 @@ const Summary = ({ user, month, months }) => {
       <h3 className="summary__title">Monthly Summary: {`${monthName.name}`}</h3>
       <div className="summary__content">
         <article className="summary__item">
-          <h4 className="summary__item--title">You have Spend:</h4>
+          <h4 className="summary__item--title">You have Spend</h4>
           <p className="summary__item--value">{summary.totalExpense}</p>
         </article>
         <article className="summary__item">
-          <h4 className="summary__item--title">You have Saved:</h4>
+          <h4 className="summary__item--title">Current Savings</h4>
           <p className="summary__item--value">{summary.savings}</p>
         </article>
         <article className="summary__item">
-          <h4 className="summary__item--title">Your Income:</h4>
+          <h4 className="summary__item--title">Your Income</h4>
           <p className="summary__item--value">{summary.totalIncome}</p>
         </article>
       </div>
