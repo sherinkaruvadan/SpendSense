@@ -1,12 +1,15 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 .header {
+  position: relative;
   background-color: $light-grey;
   padding-right: 1rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-end;
+  // gap: 1rem;
   &__nav {
+    font-size: 1rem;
     display: flex;
     padding-right: 1rem;
     gap: 2rem;
@@ -20,6 +23,28 @@
       font-weight: bold;
       color: $dark-grey;
       border-bottom: 1px solid $dark-grey;
+    }
+  }
+  &__user {
+    cursor: pointer;
+    // display: flex;
+    // flex-direction: row;
+    // gap: 0.25rem;
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+    // &--avatar {
+    //   width: 1.5rem;
+    //   height: 1.5rem;
+    //   border-radius: 50%;
+    //   background-color: rgb(198, 188, 188);
+    // }
+  }
+  @include tablet {
+    gap: 1.5rem;
+    &__nav {
+      font-size: 1.5rem;
+      gap: 4rem;
     }
   }
 }
