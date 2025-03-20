@@ -17,11 +17,13 @@ const LoginPage = ({ user, setUser }) => {
   //handle email input change
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+    setError("");
   };
 
   //handle password input change
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+    setError("");
   };
 
   //handle form submission
@@ -44,10 +46,11 @@ const LoginPage = ({ user, setUser }) => {
         setPassword("");
         navigate("/home");
       } else {
-        setError(data.message);
+        console.log(response.data.message);
+        setError(response.data.message);
       }
     } catch (error) {
-      setError("An Error Occured, please try again later");
+      setError("Invalid email or password. Please try again.");
     }
   };
 
@@ -63,11 +66,12 @@ const LoginPage = ({ user, setUser }) => {
           id="email"
           name="email"
           placeholder="Enter you email here..."
-          className="login-input"
+          className={`login-input ${error ? "error" : ""}`}
           value={email}
           onChange={handleEmailChange}
           required
         />
+        {error && <p className="error-message">{error}</p>}
         <label htmlFor="password" className="login-label">
           Password
         </label>
@@ -76,11 +80,12 @@ const LoginPage = ({ user, setUser }) => {
           name="password"
           id="password"
           placeholder="Enter your password..."
-          className="login-input"
+          className={`login-input ${error ? "error" : ""}`}
           value={password}
           onChange={handlePasswordChange}
           required
         />
+        {error && <p className="error-message">{error}</p>}
         <button className="button">Login</button>
       </form>
     </div>

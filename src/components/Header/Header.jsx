@@ -32,7 +32,7 @@ const Header = ({ user }) => {
             }
             end
           >
-            Add New Expense
+            Add Expense
           </NavLink>
           <NavLink
             to="/expense"

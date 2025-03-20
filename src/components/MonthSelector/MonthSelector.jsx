@@ -1,7 +1,7 @@
 import React from "react";
 import "./MonthSelector.scss";
 
-const MonthSelector = ({ month, setMonth, months }) => {
+const MonthSelector = ({ setMonth, months }) => {
   //define months
   // const months = [
   //   { name: "January", value: 1 },
