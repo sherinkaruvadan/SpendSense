@@ -3,6 +3,8 @@ import "./Expense.scss";
 import { Link } from "react-router-dom";
 import deleteSvg from "../../assets/Images/delete_outline-24px.svg";
 import EditSvg from "../../assets/images/edit-24px.svg";
+import axios from "axios";
+import { API_URL } from "../../config";
 
 const Expense = ({ expense }) => {
   let formattedDate = new Date(expense.date).toLocaleDateString("en-GB", {
@@ -10,6 +12,13 @@ const Expense = ({ expense }) => {
     month: "short",
     year: "numeric",
   });
+
+  const handleDelete = async () => {
+    // console.log("Delete expense with id: ", expense.id);
+    const response = await axios.delete(`${API_URL}/expense/${expense.id}`);
+    console.log("Delete response: ", response);
+    window.location.reload();
+  };
 
   return (
     <article className="expense">
@@ -28,6 +37,7 @@ const Expense = ({ expense }) => {
         <img
           src={deleteSvg}
           alt="Delete Icon"
+          onClick={handleDelete}
           className="expense__actions--item"
         />
       </div>
