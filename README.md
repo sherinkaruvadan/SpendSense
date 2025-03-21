@@ -304,7 +304,7 @@ Response body
 -Implement the income API
 
 ## Future Implementations
-User registration and login (email/password or OAuth).
+User authentication (email/password or OAuth).
 Allow users to set up recurring income and expenses like Wage, Rent etc
 
 ```
