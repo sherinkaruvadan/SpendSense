@@ -18,8 +18,6 @@ const HomePage = ({ user, month, setMonth }) => {
     { name: "November", value: 11 },
     { name: "December", value: 12 },
   ];
-
-  console.log("Current month is ", month);
   return (
     <div className="main">
       <h2>Dashboard</h2>

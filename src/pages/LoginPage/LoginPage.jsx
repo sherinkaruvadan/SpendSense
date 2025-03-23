@@ -35,9 +35,6 @@ const LoginPage = ({ user, setUser }) => {
         email,
         password,
       });
-      console.log(response.data);
-      console.log(response.data.success);
-      console.log(response.data.user);
       if (response.data.success) {
         // Save user data to localStorage
         localStorage.setItem("user", JSON.stringify(response.data.user));

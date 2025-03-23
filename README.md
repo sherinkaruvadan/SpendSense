@@ -302,5 +302,15 @@ Frontend:-
 5. Add all dependencies using npm install
 6. Start the frontend using npm run dev
 
+For login I have created two users
+
+User1
+email:- sherinanooj@gmail.com
+password:- abc123
+
+User2
+email:- anooj@gmail.com
+password:- abc123
+
 
 ```
