@@ -5,7 +5,6 @@ import { API_URL } from "../../config.js";
 import Expense from "../Expense/Expense.jsx";
 
 const ExpenseList = ({ user }) => {
-  console.log(user);
   //state variable to hold expense records
   const [expenses, setExpenses] = useState([]);
 

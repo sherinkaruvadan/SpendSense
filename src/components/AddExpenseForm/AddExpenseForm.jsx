@@ -42,7 +42,6 @@ const AddExpenseForm = ({ user }) => {
       (cat) => cat.name === event.target.value
     );
     setCategory(selectedCategory);
-    console.log(category);
     setError("");
   };
 
@@ -92,12 +91,9 @@ const AddExpenseForm = ({ user }) => {
       user_id: user.id,
     };
 
-    console.log(newExpenseObj);
-
     //push the data via post request
     try {
       const response = await axios.post(`${API_URL}/expense`, newExpenseObj);
-      console.log(response.data);
       navigate("/expense");
     } catch (error) {
       setError(
@@ -129,7 +125,7 @@ const AddExpenseForm = ({ user }) => {
         name="category"
         id="category"
         className="expense-input"
-        value={category}
+        value={category ? category.name : ""}
         onChange={handleCategoryChange}
         required
       >
@@ -167,6 +163,7 @@ const AddExpenseForm = ({ user }) => {
         onChange={handleDateChange}
         required
       />
+      {error && <p className="error-message">{error}</p>}
       <div className="expense-buttons">
         <button onClick={handleCancelClick} className="button button-cancel">
           Cancel
