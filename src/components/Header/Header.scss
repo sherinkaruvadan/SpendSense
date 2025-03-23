@@ -27,18 +27,12 @@
   }
   &__user {
     cursor: pointer;
-    // display: flex;
-    // flex-direction: row;
-    // gap: 0.25rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
     position: absolute;
     right: 1rem;
     top: 2rem;
-    // &--avatar {
-    //   width: 1.5rem;
-    //   height: 1.5rem;
-    //   border-radius: 50%;
-    //   background-color: rgb(198, 188, 188);
-    // }
   }
   @include tablet {
     gap: 1.5rem;

@@ -53,3 +53,10 @@
     }
   }
 }
+.overspend {
+  background-color: #ffdddd;
+  h4,
+  p {
+    color: $error-color;
+  }
+}

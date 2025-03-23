@@ -41,15 +41,34 @@ const Summary = ({ user, month, months }) => {
   //get name of the month for title
   const monthName = months.find((m) => m.value === month);
 
-  //get data for pie chart
+  // Determine overspending or savings
+  const overspending = Math.max(0, summary.totalExpense - summary.totalIncome);
+  const savings = Math.max(0, summary.totalIncome - summary.totalExpense);
+
+  // Pie chart data
+  const labels = ["Income", "Expense"];
+  const dataValues = [summary.totalIncome, summary.totalExpense];
+  const backgroundColors = ["#36A2EB", "#FF6384"];
+
+  // Add overspending or savings to the chart
+  if (overspending > 0) {
+    labels.push("Overspending");
+    dataValues.push(overspending);
+    backgroundColors.push("#D32F2F");
+  } else if (savings > 0) {
+    labels.push("Savings");
+    dataValues.push(savings);
+    backgroundColors.push("#FFCE56");
+  }
+
   const PieChartData = {
-    labels: ["Expense", "Income", "Savings"],
+    labels,
     datasets: [
       {
         label: "Summary",
-        data: [summary.totalExpense, summary.totalIncome, summary.savings],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        data: dataValues,
+        backgroundColor: backgroundColors,
+        hoverBackgroundColor: backgroundColors,
       },
     ],
   };
@@ -72,10 +91,17 @@ const Summary = ({ user, month, months }) => {
           <h4 className="summary__item--title">You have Spend</h4>
           <p className="summary__item--value">{summary.totalExpense}</p>
         </article>
-        <article className="summary__item">
-          <h4 className="summary__item--title">Current Savings</h4>
-          <p className="summary__item--value">{summary.savings}</p>
-        </article>
+        {overspending > 0 ? (
+          <article className="summary__item overspend">
+            <h4 className="summary__item--title">Overspend</h4>
+            <p className="summary__item--value">{overspending}</p>
+          </article>
+        ) : (
+          <article className="summary__item">
+            <h4 className="summary__item--title">Current Savings</h4>
+            <p className="summary__item--value">{savings}</p>
+          </article>
+        )}
         <article className="summary__item">
           <h4 className="summary__item--title">Your Income</h4>
           <p className="summary__item--value">{summary.totalIncome}</p>
