@@ -4,7 +4,6 @@ import "./MonthSelector.scss";
 const MonthSelector = ({ setMonth, months }) => {
   const onMonthClick = (monthSelected) => {
     setMonth(monthSelected);
-    console.log("Month selected is ", monthSelected);
   };
 
   return (

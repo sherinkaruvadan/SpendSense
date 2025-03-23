@@ -18,7 +18,6 @@ const ExpenseList = ({ user }) => {
           user_id: user.id,
         },
       });
-      console.log(response.data);
       setExpenses(response.data);
     } catch (error) {
       console.error(`Error in retrieving the expense list : ${error}`);
