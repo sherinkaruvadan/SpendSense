@@ -46,22 +46,14 @@ const EdiExpenseForm = ({ user }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetchCategories(); // Fetch categories first
+      await fetchCategories();
       if (user && user.id) {
-        await fetchExpense(); // Fetch expense after categories are loaded
+        await fetchExpense();
       }
     };
 
     fetchData();
   }, [id, user]);
-
-  // useEffect(() => {
-  //   fetchCategories();
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchExpense();
-  // }, [id]);
 
   // Handle input changes
   const handleAmountChange = (event) => setAmount(event.target.value);

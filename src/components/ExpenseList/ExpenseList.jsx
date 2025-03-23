@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./ExpenseList.scss";
 import axios from "axios";
 import { API_URL } from "../../config.js";
 import Expense from "../Expense/Expense.jsx";
@@ -12,9 +13,11 @@ const ExpenseList = ({ user }) => {
 
   const fetchExpenses = async () => {
     try {
-      const response = await axios.get(
-        `${API_URL}/expense/?user_id=${user.id}`
-      );
+      const response = await axios.get(`${API_URL}/expense/`, {
+        params: {
+          user_id: user.id,
+        },
+      });
       console.log(response.data);
       setExpenses(response.data);
     } catch (error) {
@@ -24,17 +27,17 @@ const ExpenseList = ({ user }) => {
 
   useEffect(() => {
     fetchExpenses();
-  }, []);
+  }, [user]);
 
   const sortedExpenses = expenses.sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
+    (a, b) => new Date(b.date) - new Date(a.date)
   );
 
   return (
     <div className="expense-container">
-      {sortedExpenses.map((expense) => {
-        return <Expense key={expense.id} expense={expense} />;
-      })}
+      {sortedExpenses.map((expense) => (
+        <Expense key={expense.id} expense={expense} />
+      ))}
     </div>
   );
 };

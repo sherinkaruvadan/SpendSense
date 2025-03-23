@@ -29,10 +29,11 @@ const AddExpenseForm = ({ user }) => {
     fetchCategories();
   }, []);
 
-  //handle input change
+  //handle input field changes
   //handle amount change
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
+    setError("");
   };
 
   //handle category change
@@ -42,11 +43,13 @@ const AddExpenseForm = ({ user }) => {
     );
     setCategory(selectedCategory);
     console.log(category);
+    setError("");
   };
 
   //handle description change
   const handleDescritpionChange = (event) => {
     setDescription(event.target.value);
+    setError("");
   };
 
   //handle date change
@@ -75,6 +78,12 @@ const AddExpenseForm = ({ user }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    // Validate required fields
+    if (!amount || !category || !date) {
+      setError("Please fill out all required fields.");
+      return;
+    }
+
     const newExpenseObj = {
       date: date,
       category_id: category.id,
@@ -91,6 +100,9 @@ const AddExpenseForm = ({ user }) => {
       console.log(response.data);
       navigate("/expense");
     } catch (error) {
+      setError(
+        "An error occurred while submitting the form. Please try again."
+      );
       console.error(`Error creating an expense record: ${error}`);
     }
   };

@@ -1,13 +1,21 @@
 import React from "react";
 import "./Header.scss";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/Images/logo.svg";
 
 const Header = ({ user }) => {
   const location = useLocation();
   const isLoginPage = location.pathname === "/";
 
-  // Extract the part of the email before the "@" symbol
+  //logout function
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    // navigate("/");
+    window.location.href = "/";
+  };
+
   const displayName = user ? user.email.split("@")[0] : "";
 
   return (
@@ -24,7 +32,7 @@ const Header = ({ user }) => {
             }
             end
           >
-            Add New Expense
+            Add Expense
           </NavLink>
           <NavLink
             to="/expense"
@@ -39,7 +47,12 @@ const Header = ({ user }) => {
       )}
       {user && (
         <div className="header__user">
-          <span className="header__user--name">{displayName}</span>
+          <span className="header__user--name">
+            {displayName.charAt(0).toUpperCase() + displayName.slice(1)}
+          </span>
+          <span onClick={logout} className="header__user--logout">
+            Logout
+          </span>
         </div>
       )}
     </header>

@@ -26,3 +26,11 @@
     justify-content: space-evenly;
   }
 }
+.error {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  border: 2px solid $error-color;
+  &-message {
+    font-size: 0.7rem;
+  }
+}

@@ -1,6 +1,7 @@
 @use "../../styles/partials/variables" as *;
 .footer {
   padding: 1rem;
+  text-align: center;
   &__copyright {
     font-size: 0.75rem;
   }
