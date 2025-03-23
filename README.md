@@ -277,6 +277,7 @@ Response body
 ## Future Implementations
 User Signup
 Implement category wise summary display
+Implement sorting
 Allow users to set up recurring income and expenses like Wage, Rent etc
 Integrate an Open AI GPT model APIs to generate personalized financial suggestions based on the summary and categories sum.
 
