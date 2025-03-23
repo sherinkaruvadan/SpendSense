@@ -16,12 +16,13 @@ Almost every people rely on card for spending, which often makes it hard to trac
 
 ### Features
 
-As a user, I want to add monthly income
-As a user, I want to add a new expense with details like amount category and date
-As a user, I want to edit the details of an existing expense
-As a user, I want to delete the expense if not needed in the list
-As a user, I want to view all the expenses, sorted by category or data
-As a user, I want to view the remaining balance in my income
+As a user, I want to login to the app
+As a logged in user, I want to view summary of a month's expense and savings
+As a logged in user, I want to add a new expense with details like amount category and date
+As a logged in user, I want to edit the details of an existing expense
+As a logged in user, I want to delete the expense if not needed in the list
+As a logged in user, I want to view the remaining balance in my income
+As a logged in user, I want to logout from application
 
 ## Implementation
 
@@ -47,7 +48,7 @@ MySQL
 
 ### Sitemap
 
--Homepage :- Displays the income, total expenses, and remaining balance and a link to add an expense form page. It has a pei-chart the displays the expenses by category.
+-Homepage :- Displays the income, total expenses, and remaining balance and a link to add an expense form page. It has a pei-chart the displays the expense, income and savings.
 
 -Add Expense Form :- This form allows user to add expense record by filling the following fields
 Amount
@@ -59,7 +60,6 @@ A cancel button to return to the homepage
 
 -Expense list page :- Displays a list of all expenses with options to edit or delete.
 A table like layout displaying all expenses in row
-A button to go to home page
 Clicking on edit will go to edit form page
 Clicking on delete will delete the record
 
@@ -231,42 +231,13 @@ Response body
         "totalExpenses": 5000
     }
 
-
-Income table
-POST /api/income :- Add an income
-Request Body
-    {
-        "amount":5000,
-        "date":"2025-03-01,
-        "User_ID":1
-    }
+Fetch Summary of a month for a user
+GET /api/dashboard/summary
 Response body
     {
-        "id":1
-        "amount":5000,
-        "date":"2025-03-01,
-        "User_ID":1
-        "created_at" :"2023-10-05T00:00:00.000Z"
-    }
-
-GET /api/income : Get income for a specific month
-Query parameters:
-month
-Response body
-    {
-        "id":1
-        "amount":5000,
-        "date":"2025-03-01,
-        "User_ID":1
-        "created_at" :"2023-10-05T00:00:00.000Z"
-    }
-
-GET /api/balance :- To view the balance remaining
-Parameters:
-User_ID: id of user
-month: month for which to display balance
-    {
-        "balanceRemaining": 5000
+    "totalExpense": 4320,
+    "totalIncome": 6000,
+    "savings": 1680
     }
 
 POST /login: to login to application
@@ -301,10 +272,12 @@ Response body
 
 - Implement the Expenses API (GET, POST, PUT, DELETE).
 -Implement categories API
--Implement the income API
+-Implement the summary API
 
 ## Future Implementations
-User registration and login (email/password or OAuth).
+User Signup
+Implement category wise summary display
 Allow users to set up recurring income and expenses like Wage, Rent etc
+Integrate an Open AI GPT model APIs to generate personalized financial suggestions based on the summary and categories sum.
 
 ```
