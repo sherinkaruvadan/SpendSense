@@ -280,4 +280,26 @@ Implement category wise summary display
 Allow users to set up recurring income and expenses like Wage, Rent etc
 Integrate an Open AI GPT model APIs to generate personalized financial suggestions based on the summary and categories sum.
 
+
+##Installation Instructions:-
+
+Backend:-
+1. Clone the repository using git clone https://github.com/sherinkaruvadan/SpendSense-server.git
+2. Redirect to the project folder using cd SpendSense-server
+3. Create a file named .env using touch .env
+4. Copy all data from .env.example to .env and update the value with database configuration and create a database named spendsense using CREATE DATABASE using MySQL
+5. Add all dependencies using npm install
+6. Run npx knex migrate:latest to create tables using Knex
+7. Run npx knex seed:run to add dummy data to database
+8. Start the server using npm run dev
+
+Frontend:-
+1. Clone the repository using git clone https://github.com/sherinkaruvadan/SpendSense.git
+2. Redirect to project folder using cd SpendSense
+3. Create a file named .env using touch .env
+4. Copy the variable from .env.example and update that in .env file and include the backend API url correctly with PORT number from backend
+5. Add all dependencies using npm install
+6. Start the frontend using npm run dev
+
+
 ```
