@@ -10,9 +10,6 @@ import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 Chart.register(ArcElement, Tooltip, Legend);
 
 const Summary = ({ user, month, months }) => {
-  // console.log(month);
-  // console.log(user);
-
   //summary for a month
   const [summary, setSummary] = useState({
     totalExpense: 0,
@@ -29,7 +26,6 @@ const Summary = ({ user, month, months }) => {
       },
     });
     setSummary(response.data);
-    console.log(response.data);
   };
 
   useEffect(() => {
@@ -48,7 +44,7 @@ const Summary = ({ user, month, months }) => {
   // Pie chart data
   const labels = ["Income", "Expense"];
   const dataValues = [summary.totalIncome, summary.totalExpense];
-  const backgroundColors = ["#36A2EB", "#FF6384"];
+  const backgroundColors = ["#2196f3", "#FF6384"];
 
   // Add overspending or savings to the chart
   if (overspending > 0) {
@@ -58,7 +54,7 @@ const Summary = ({ user, month, months }) => {
   } else if (savings > 0) {
     labels.push("Savings");
     dataValues.push(savings);
-    backgroundColors.push("#FFCE56");
+    backgroundColors.push("#4caf50");
   }
 
   const PieChartData = {

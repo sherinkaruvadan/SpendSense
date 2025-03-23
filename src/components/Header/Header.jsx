@@ -47,7 +47,6 @@ const Header = ({ user }) => {
       )}
       {user && (
         <div className="header__user">
-          {/* <div className="header__user--avatar"></div> */}
           <span className="header__user--name">
             {displayName.charAt(0).toUpperCase() + displayName.slice(1)}
           </span>

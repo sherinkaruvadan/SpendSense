@@ -1,5 +1,4 @@
 import React from "react";
-import "./HomePage.scss";
 import Summary from "../../components/Summary/Summary";
 import MonthSelector from "../../components/MonthSelector/MonthSelector";
 

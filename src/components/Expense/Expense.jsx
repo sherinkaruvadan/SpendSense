@@ -14,7 +14,6 @@ const Expense = ({ expense }) => {
   });
 
   const handleDelete = async () => {
-    // console.log("Delete expense with id: ", expense.id);
     const response = await axios.delete(`${API_URL}/expense/${expense.id}`);
     console.log("Delete response: ", response);
     window.location.reload();
