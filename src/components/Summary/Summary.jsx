@@ -3,6 +3,11 @@ import "./Summary.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../../config";
+import { Pie } from "react-chartjs-2";
+import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
+
+//register chart.js components
+Chart.register(ArcElement, Tooltip, Legend);
 
 const Summary = ({ user, month, months }) => {
   // console.log(month);
@@ -36,9 +41,32 @@ const Summary = ({ user, month, months }) => {
   //get name of the month for title
   const monthName = months.find((m) => m.value === month);
 
+  //get data for pie chart
+  const PieChartData = {
+    labels: ["Expense", "Income", "Savings"],
+    datasets: [
+      {
+        label: "Summary",
+        data: [summary.totalExpense, summary.totalIncome, summary.savings],
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+      },
+    ],
+  };
+
   return (
     <section className="summary">
       <h3 className="summary__title">Monthly Summary: {`${monthName.name}`}</h3>
+      <div className="summary__chart">
+        <Pie
+          data={PieChartData}
+          options={{
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 1,
+          }}
+        />
+      </div>
       <div className="summary__content">
         <article className="summary__item">
           <h4 className="summary__item--title">You have Spend</h4>

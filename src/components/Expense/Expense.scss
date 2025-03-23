@@ -13,6 +13,11 @@
   width: 100%;
   max-width: 20rem;
   margin: 1rem;
+  &__category,
+  &__amount {
+    color: $primary-blue;
+  }
+
   &__actions {
     width: 100%;
     display: flex;

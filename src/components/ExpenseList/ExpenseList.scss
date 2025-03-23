@@ -11,6 +11,7 @@
     flex-wrap: wrap;
   }
   @include desktop {
+    padding-top: 1rem;
     flex-direction: column;
   }
 }

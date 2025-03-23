@@ -34,12 +34,22 @@
       color: $primary-blue;
     }
   }
+  &__chart {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+  }
   @include tablet {
     &__content {
       flex-direction: row;
     }
     &__item {
       width: 20rem;
+    }
+    &__chart {
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
     }
   }
 }
