@@ -2,7 +2,7 @@ import React from "react";
 import "./LoginPage.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { API_URL } from "../../config.js";
 
 const LoginPage = ({ user, setUser }) => {
@@ -13,6 +13,13 @@ const LoginPage = ({ user, setUser }) => {
 
   //navigate
   const navigate = useNavigate();
+
+  // If user is already logged in, redirect to home
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, [user, navigate]);
 
   //handle email input change
   const handleEmailChange = (event) => {
