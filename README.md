@@ -272,7 +272,7 @@ Response body
 
 - Implement the Expenses API (GET, POST, PUT, DELETE).
 -Implement categories API
--Implement the summary API
+-Implement the summary APIq
 
 ## Future Implementations
 User Signup
