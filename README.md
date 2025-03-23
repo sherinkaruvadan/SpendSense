@@ -284,7 +284,7 @@ Integrate an Open AI GPT model APIs to generate personalized financial suggestio
 
 ##Installation Instructions:-
 
-Backend:-
+### Backend:-
 1. Clone the repository using git clone https://github.com/sherinkaruvadan/SpendSense-server.git
 2. Redirect to the project folder using cd SpendSense-server
 3. Create a file named .env using touch .env
@@ -294,7 +294,7 @@ Backend:-
 7. Run npx knex seed:run to add dummy data to database
 8. Start the server using npm run dev
 
-Frontend:-
+### Frontend:-
 1. Clone the repository using git clone https://github.com/sherinkaruvadan/SpendSense.git
 2. Redirect to project folder using cd SpendSense
 3. Create a file named .env using touch .env
