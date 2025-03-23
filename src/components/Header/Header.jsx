@@ -50,7 +50,7 @@ const Header = ({ user }) => {
           <span className="header__user--name">
             {displayName.charAt(0).toUpperCase() + displayName.slice(1)}
           </span>
-          <span onClick={logout} className="header__user--name">
+          <span onClick={logout} className="header__user--logout">
             Logout
           </span>
         </div>

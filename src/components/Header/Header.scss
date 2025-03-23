@@ -26,13 +26,15 @@
     }
   }
   &__user {
-    cursor: pointer;
     display: flex;
     flex-direction: row;
     gap: 1rem;
     position: absolute;
     right: 1rem;
     top: 2rem;
+    &--logout {
+      cursor: pointer;
+    }
   }
   @include tablet {
     gap: 1.5rem;
