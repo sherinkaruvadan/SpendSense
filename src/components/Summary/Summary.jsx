@@ -76,36 +76,38 @@ const Summary = ({ user, month, months }) => {
   return (
     <section className="summary">
       <h3 className="summary__title">Monthly Summary: {`${monthName.name}`}</h3>
-      <div className="summary__chart">
-        <Pie
-          data={PieChartData}
-          options={{
-            responsive: true,
-            maintainAspectRatio: true,
-            aspectRatio: 1,
-          }}
-        />
-      </div>
-      <div className="summary__content">
-        <article className="summary__item">
-          <h4 className="summary__item--title">You have Spend</h4>
-          <p className="summary__item--value">{summary.totalExpense}</p>
-        </article>
-        {overspending > 0 ? (
-          <article className="summary__item overspend">
-            <h4 className="summary__item--title">Overspend</h4>
-            <p className="summary__item--value">{overspending}</p>
-          </article>
-        ) : (
+      <div className="summary__represenation">
+        <div className="summary__chart">
+          <Pie
+            data={PieChartData}
+            options={{
+              responsive: true,
+              maintainAspectRatio: true,
+              aspectRatio: 1,
+            }}
+          />
+        </div>
+        <div className="summary__content">
           <article className="summary__item">
-            <h4 className="summary__item--title">Current Savings</h4>
-            <p className="summary__item--value">{savings}</p>
+            <h4 className="summary__item--title">You have Spend</h4>
+            <p className="summary__item--value">{summary.totalExpense}</p>
           </article>
-        )}
-        <article className="summary__item">
-          <h4 className="summary__item--title">Your Income</h4>
-          <p className="summary__item--value">{summary.totalIncome}</p>
-        </article>
+          {overspending > 0 ? (
+            <article className="summary__item overspend">
+              <h4 className="summary__item--title">Overspend</h4>
+              <p className="summary__item--value">{overspending}</p>
+            </article>
+          ) : (
+            <article className="summary__item">
+              <h4 className="summary__item--title">Current Savings</h4>
+              <p className="summary__item--value">{savings}</p>
+            </article>
+          )}
+          <article className="summary__item">
+            <h4 className="summary__item--title">Your Income</h4>
+            <p className="summary__item--value">{summary.totalIncome}</p>
+          </article>
+        </div>
       </div>
     </section>
   );
